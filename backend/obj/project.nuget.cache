@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "REgRELY3yDrxgyF9inqohdRQTmrbUary3liLUAbTFk5tOeGyF4tKrlJrgD+8MNsYxzNJ0NnwuhM4tit+hdOeYA==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\msa2024-phase-2\\backend\\backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cheun\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\cheun\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\cheun\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\cheun\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\cheun\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\cheun\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
