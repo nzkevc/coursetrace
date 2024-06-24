@@ -1,0 +1,17 @@
+{
+  "name": "msa-phase-2",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cd frontend && vite && cd ../backend && dotnet run"
+  },
+  "volta": {
+    "node": "22.3.0"
+  },
+  "author": {
+    "name": "Kevin Cheung",
+    "url": "https://github.com/nzkevc"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/nzkevc/msa2024-phase-2#readme"
+}
