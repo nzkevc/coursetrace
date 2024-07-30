@@ -9,10 +9,12 @@ public class SemesterController : ControllerBase
 {
     // TODO: change this to ISemesterService when I'm done!!!
     private readonly SemesterService _semesterService;
+    private readonly ILogger<SemesterController> _logger;
 
-    public SemesterController(SemesterService semesterService)
+    public SemesterController(SemesterService semesterService, ILogger<SemesterController> logger)
     {
         _semesterService = semesterService;
+        _logger = logger;
     }
 
     // GET /Semester
