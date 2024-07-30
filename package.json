@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "cd frontend && vite && cd ../backend && dotnet run"
+    "dev": "cd frontend && vite && cd ../backend && dotnet run",
+    "dev:backend": "cd backend && dotnet run"
   },
   "volta": {
     "node": "22.3.0"

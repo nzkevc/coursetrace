@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CoursesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")
-    ?? throw new InvalidOperationException("Connection string 'StudentContext' not found.")));
+    ?? throw new InvalidOperationException("Connection string 'MyDbConnection' not found.")));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -34,4 +34,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapGet("/", () => @"CourseTrace management API. Navigate to /swagger to open the Swagger test UI.");
 app.Run();
