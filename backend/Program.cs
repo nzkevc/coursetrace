@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CoursesContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")
+    ?? throw new InvalidOperationException("Connection string 'StudentContext' not found.")));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -14,6 +15,10 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod();
     });
 });
+
+// TODO: replace with <ISemesterService, SemesterService> when I'm done with it!!!!
+builder.Services.AddScoped<SemesterService>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
