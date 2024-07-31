@@ -29,9 +29,26 @@ public class SemesterService
         }
     }
 
-    public async Task<IEnumerable<Semester>> GetAllSemesters()
+    public async Task<IEnumerable<SemesterDto>> GetAllSemesters()
     {
-        return await _context.Semesters.ToListAsync();
+        var semesters = await _context.Semesters.Include(s => s.Courses).ToListAsync();
+
+        return semesters.Select(s => new SemesterDto
+        {
+            Id = s.Id,
+            Name = s.Name,
+            Year = s.Year,
+            Courses = s.Courses != null ? s.Courses.Select(c => new CourseDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Assignments = c.Assignments != null ? c.Assignments.Select(a => new AssignmentDto
+                {
+                    Id = a.Id,
+                    Name = a.Name
+                }).ToList() : new List<AssignmentDto>()
+            }).ToList() : new List<CourseDto>()
+        });
     }
 
     public async Task<Semester?> GetSemesterById(int id)

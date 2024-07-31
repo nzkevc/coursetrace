@@ -1,0 +1,19 @@
+// Should get all courses, including semesters
+GET http://localhost:5237/Course
+###
+
+// Should get a specific course, including semesters
+GET http://localhost:5237/Course/7
+###
+
+// TODO: Should create a course according to THIS JSON data
+POST http://localhost:5237/Course
+###
+
+// TODO: Should update a course according to THIS JSON data
+PUT http://localhost:5237/Course/7
+###
+
+// Should delete a course
+DELETE http://localhost:5237/Course/7
+###

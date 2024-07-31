@@ -12,12 +12,12 @@ public static class CoursesSeedData
         );
 
         modelBuilder.Entity<Course>().HasData(
-            new Course { Id = 1, Name = "Course 1", Semesters = new List<Semester>() },
-            new Course { Id = 2, Name = "Course 2", Semesters = new List<Semester>() },
-            new Course { Id = 3, Name = "Course 3", Semesters = new List<Semester>() },
-            new Course { Id = 4, Name = "Course 4", Semesters = new List<Semester>() },
-            new Course { Id = 5, Name = "Course 5", Semesters = new List<Semester>() },
-            new Course { Id = 6, Name = "Course 6", Semesters = new List<Semester>() }
+            new Course { Id = 1, Name = "Course 1" },
+            new Course { Id = 2, Name = "Course 2" },
+            new Course { Id = 3, Name = "Course 3" },
+            new Course { Id = 4, Name = "Course 4" },
+            new Course { Id = 5, Name = "Course 5" },
+            new Course { Id = 6, Name = "Course 6" }
         );
 
         modelBuilder.Entity("CourseSemester").HasData(

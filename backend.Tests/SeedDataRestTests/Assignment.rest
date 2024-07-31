@@ -1,0 +1,19 @@
+// Should get all assignments
+GET http://localhost:5237/Assignment
+###
+
+// Should get a specific assignment
+GET http://localhost:5237/Assignment/7
+###
+
+// TODO: Should create a assignment according to THIS JSON data
+POST http://localhost:5237/Assignment
+###
+
+// TODO: Should update a assignment according to THIS JSON data
+PUT http://localhost:5237/Assignment/7
+###
+
+// Should delete a assignment
+DELETE http://localhost:5237/Assignment/7
+###

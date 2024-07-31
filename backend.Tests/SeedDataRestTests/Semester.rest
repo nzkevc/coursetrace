@@ -1,1 +1,19 @@
+// Should get all semesters, including courses
 GET http://localhost:5237/Semester
+###
+
+// Should get a specific semester, including courses
+GET http://localhost:5237/Semester/3
+###
+
+// Should create a semester according to this JSON data
+POST http://localhost:5237/Semester
+###
+
+// Should update a semester according to this JSON data
+PUT http://localhost:5237/Semester/4
+###
+
+// Should delete a semester
+DELETE http://localhost:5237/Semester/3
+###
