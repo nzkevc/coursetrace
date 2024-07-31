@@ -19,6 +19,7 @@ builder.Services.AddCors(options =>
 
 // TODO: replace with <ISemesterService, SemesterService> when I'm done with it!!!!
 builder.Services.AddScoped<SemesterService>();
+builder.Services.AddScoped<CourseService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

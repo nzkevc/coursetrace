@@ -67,11 +67,7 @@ public class SemesterController : ControllerBase
     [HttpDelete("{id}", Name = "DeleteSemester")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
-        var semester = _semesterService.GetSemesterById(id);
-        if (semester != null)
-        {
-            await _semesterService.DeleteSemester(id);
-        }
+        await _semesterService.DeleteSemester(id);
         return NoContent();
     }
 }
