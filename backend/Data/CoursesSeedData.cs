@@ -29,6 +29,7 @@ public static class CoursesSeedData
             new { CoursesId = 5, SemestersId = 3 }
         );
 
+        // TODO: add the other assignment fields so I can test
         modelBuilder.Entity<Assignment>().HasData(
             new Assignment { Id = 1, Name = "Assignment 1", CourseId = 1 },
             new Assignment { Id = 2, Name = "Assignment 2", CourseId = 1 },
