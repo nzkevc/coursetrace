@@ -20,7 +20,7 @@ public class SemesterController : ControllerBase
 
     // GET /Semester
     [HttpGet(Name = "GetAllSemesters")]
-    public async Task<ActionResult<IEnumerable<Semester>>> Get()
+    public async Task<ActionResult<IEnumerable<SemesterDto>>> Get()
     {
         var semesters = await _semesterService.GetAllSemesters();
         return Ok(semesters);
@@ -28,7 +28,7 @@ public class SemesterController : ControllerBase
 
     // GET /Semester/{id}
     [HttpGet("{id}", Name = "GetSemesterById")]
-    public async Task<ActionResult<Semester>> GetById(int id)
+    public async Task<ActionResult<SemesterDto>> GetById(int id)
     {
         var semester = await _semesterService.GetSemesterById(id);
         if (semester == null)

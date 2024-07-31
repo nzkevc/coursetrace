@@ -1,8 +1,8 @@
-// Should get all semesters, including courses
+// SUCCESSFUL, Should get all semesters, including courses
 GET http://localhost:5237/Semester
 ###
 
-// Should get a specific semester, including courses
+// SUCCESSFUL, Should get a specific semester, including courses
 GET http://localhost:5237/Semester/3
 ###
 

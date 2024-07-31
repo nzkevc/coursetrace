@@ -1,7 +1,7 @@
 namespace Models
 
 {
-    public class AssignmentDto
+    public class CourseAssignmentDto
     {
         public int Id { get; set; }
         public required string Name { get; set; }

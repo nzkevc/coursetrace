@@ -29,32 +29,59 @@ public class SemesterService
         }
     }
 
+    // TODO: fix differences in nullability of reference types or whatever that means
     public async Task<IEnumerable<SemesterDto>> GetAllSemesters()
     {
-        var semesters = await _context.Semesters.Include(s => s.Courses).ToListAsync();
+        var semesters = await _context.Semesters.Include(s => s.Courses).ThenInclude(c => c.Assignments).ToListAsync();
 
         return semesters.Select(s => new SemesterDto
         {
             Id = s.Id,
             Name = s.Name,
             Year = s.Year,
-            Courses = s.Courses != null ? s.Courses.Select(c => new CourseDto
+            Courses = s.Courses != null ? s.Courses.Select(c => new SemesterCourseDto
             {
                 Id = c.Id,
                 Name = c.Name,
-                Assignments = c.Assignments != null ? c.Assignments.Select(a => new AssignmentDto
+                Assignments = c.Assignments != null ? c.Assignments.Select(a => new CourseAssignmentDto
                 {
                     Id = a.Id,
                     Name = a.Name
-                }).ToList() : new List<AssignmentDto>()
-            }).ToList() : new List<CourseDto>()
+                }).ToList() : new List<CourseAssignmentDto>()
+            }).ToList() : new List<SemesterCourseDto>()
         });
     }
 
-    public async Task<Semester?> GetSemesterById(int id)
+    public async Task<SemesterDto?> GetSemesterById(int id)
     {
-        var semester = await _context.Semesters.FindAsync(id);
-        return semester;
+        var semester = await _context.Semesters
+            .Include(s => s.Courses)
+                .ThenInclude(c => c.Assignments)
+            .FirstOrDefaultAsync(s => s.Id == id);
+
+        if (semester != null)
+        {
+            var semesterDto = new SemesterDto
+            {
+                Id = semester.Id,
+                Name = semester.Name,
+                Year = semester.Year,
+                Courses = semester.Courses?.Select(c => new SemesterCourseDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Assignments = c.Assignments?.Select(a => new CourseAssignmentDto
+                    {
+                        Id = a.Id,
+                        Name = a.Name
+                    }).ToList() ?? new List<CourseAssignmentDto>()
+                }).ToList() ?? new List<SemesterCourseDto>()
+            };
+
+            return semesterDto;
+        }
+
+        return null;
     }
 
     // TODO: actually implement properly
