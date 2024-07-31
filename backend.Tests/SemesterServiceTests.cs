@@ -12,6 +12,7 @@ public class SemesterServiceTests
     private readonly SemesterService _service;
     private readonly Mock<CoursesContext> _mockContext;
 
+    // TODO: MAKE WORK
     public SemesterServiceTests()
     {
         _mockContext = new Mock<CoursesContext>();
