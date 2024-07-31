@@ -1,18 +1,18 @@
-namespace backend.Tests;
-
 using System.Threading.Tasks;
 using Xunit;
 using Moq;
 using Microsoft.EntityFrameworkCore;
-using backend.Services;
-using backend.Models;
+using Services;
+using Models;
+
+namespace Tests;
 
 public class SemesterServiceTests
 {
     private readonly SemesterService _service;
     private readonly Mock<CoursesContext> _mockContext;
 
-    // TODO: MAKE WORK
+    // TODO: CURRENTLY BROKEN. MAKE WORK.
     public SemesterServiceTests()
     {
         _mockContext = new Mock<CoursesContext>();
@@ -22,7 +22,7 @@ public class SemesterServiceTests
     [Fact]
     public async Task CreateSemester_ShouldAddSemester()
     {
-        var semester = new Semester { /* initialize properties */ };
+        var semester = new Semester { Id = 1, Name = "Sem 1 2021", Year = 2021 };
 
         await _service.CreateSemester(semester);
 

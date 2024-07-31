@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using Models;
+
+namespace Services;
 
 public class SemesterService
 {
