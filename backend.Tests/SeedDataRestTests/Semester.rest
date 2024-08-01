@@ -14,6 +14,6 @@ POST http://localhost:5237/Semester
 PUT http://localhost:5237/Semester/4
 ###
 
-// Should delete a semester
+// SUCCESSFUL, Should delete a semester
 DELETE http://localhost:5237/Semester/3
 ###

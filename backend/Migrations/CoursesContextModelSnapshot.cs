@@ -99,7 +99,7 @@ namespace backend.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Assignments");
+                    b.ToTable("Assignments", (string)null);
 
                     b.HasData(
                         new
@@ -178,7 +178,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
 
                     b.HasData(
                         new
@@ -230,7 +230,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Semesters");
+                    b.ToTable("Semesters", (string)null);
 
                     b.HasData(
                         new
