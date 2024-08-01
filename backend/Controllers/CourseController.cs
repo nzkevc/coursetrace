@@ -36,25 +36,24 @@ public class CourseController : ControllerBase
     }
 
     [HttpPost(Name = "CreateCourse")]
-    public async Task<ActionResult<Course>> Create(CourseDto course)
+    public async Task<ActionResult<CourseDto>> Create([FromBody] CoursePostDto course)
     {
-        await _courseService.CreateCourse(course);
-        return CreatedAtRoute("GetCourseById", new { id = course.Id }, course);
+        var createdCourse = await _courseService.CreateCourse(course);
+        return CreatedAtRoute("GetCourseById", new { id = createdCourse.Id }, createdCourse);
     }
 
     [HttpPut("{id}", Name = "UpdateCourse")]
-    public async Task<IActionResult> Update(int id, Course course)
+    public async Task<IActionResult> Update(int id, CoursePostDto course)
     {
-        // var existingCourse = await _courseService.GetCourseById(id);
-        // if (existingCourse == null)
-        // {
-        //     return NotFound();
-        // }
-        // existingCourse.Name = course.Name;
-        // existingCourse.StartDate = course.StartDate;
-        // existingCourse.EndDate = course.EndDate;
-        // await _courseService.UpdateCourse(existingCourse);
-        // return NoContent();
+        try
+        {
+            await _courseService.UpdateCourse(id, course);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error updating course");
+            return BadRequest();
+        }
         return Ok();
     }
 

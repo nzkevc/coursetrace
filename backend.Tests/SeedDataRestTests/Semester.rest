@@ -6,8 +6,13 @@ GET http://localhost:5237/Semester
 GET http://localhost:5237/Semester/3
 ###
 
-// Should create a semester according to this JSON data
+// SUCCESSFUL, Should create a semester according to this JSON data
 POST http://localhost:5237/Semester
+Content-Type: application/json
+
+{
+  "Name": "Semester 2 2024"
+}
 ###
 
 // Should update a semester according to this JSON data
@@ -15,5 +20,5 @@ PUT http://localhost:5237/Semester/4
 ###
 
 // SUCCESSFUL, Should delete a semester
-DELETE http://localhost:5237/Semester/3
+DELETE http://localhost:5237/Semester/4
 ###

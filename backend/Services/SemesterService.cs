@@ -12,11 +12,19 @@ public class SemesterService
         _context = context;
     }
 
-    // TODO: need to handle malformed data and all that jazz
-    public async Task CreateSemester(Semester semester)
+    // This is fine, but ideally we'd want to return a SemesterDto
+    public async Task<Semester> CreateSemester(SemesterPostDto semester)
     {
-        _context.Semesters.Add(semester);
+        var createdSemester = new Semester
+        {
+            Name = semester.Name,
+            Year = semester.Year,
+            Courses = new List<Course>()
+        };
+
+        _context.Semesters.Add(createdSemester);
         await _context.SaveChangesAsync();
+        return createdSemester;
     }
 
     public async Task DeleteSemester(int id)

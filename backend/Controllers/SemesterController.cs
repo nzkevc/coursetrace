@@ -40,10 +40,10 @@ public class SemesterController : ControllerBase
 
     // POST /Semester
     [HttpPost(Name = "CreateSemester")]
-    public async Task<ActionResult<Semester>> Create(Semester semester)
+    public async Task<ActionResult<Semester>> Create([FromBody] SemesterPostDto semester)
     {
-        await _semesterService.CreateSemester(semester);
-        return CreatedAtRoute("GetSemesterById", new { id = semester.Id }, semester);
+        var createdSemester = await _semesterService.CreateSemester(semester);
+        return CreatedAtRoute("GetSemesterById", new { id = createdSemester.Id }, createdSemester);
     }
 
     // PUT /Semester/{id}
