@@ -13,10 +13,26 @@ public class CourseService
         _context = context;
     }
 
-    // TODO: need to handle malformed data and all that jazz
-    public async Task CreateCourse(Course course)
+    // TODO: FINISH and handle malformed data and all that jazz
+    public async Task CreateCourse(CourseDto course)
     {
-        _context.Courses.Add(course);
+        // The assumption is that a semester will be created before you can create a course
+        // So when creating a course, you should just be able to pass the semester id
+        // And the course should be created with that semester
+        // So this stuff right here is wrong
+        var createdCourse = new Course
+        {
+            Name = course.Name,
+            Semesters = course.Semesters?.Select(s => new Semester
+            {
+                Name = s.Name
+            }).ToList(),
+            Assignments = course.Assignments?.Select(a => new Assignment
+            {
+                Name = a.Name
+            }).ToList()
+        };
+        _context.Courses.Add(createdCourse);
         await _context.SaveChangesAsync();
     }
 
