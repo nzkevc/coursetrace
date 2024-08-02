@@ -1,0 +1,27 @@
+// SUCCESSFUL, Should get all courses, including semesters
+GET http://localhost:5237/Course
+###
+
+// SUCCESSFUL, Should get a specific course, including semesters
+GET http://localhost:5237/Course/9
+###
+
+// Should create a course according to THIS JSON data
+// Creating a course returns a CourseDto with Id=0 and I have no idea why
+POST http://localhost:5237/Course
+Content-Type: application/json
+
+{
+  "Name": "Course 333",
+  "SemesterIds": [5, 6]
+}
+
+###
+
+// Should update a course according to THIS JSON data
+PUT http://localhost:5237/Course/7
+###
+
+// SUCCESSFUL, Should delete a course
+DELETE http://localhost:5237/Course/13
+###

@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CoursesContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")
+    ?? throw new InvalidOperationException("Connection string 'MyDbConnection' not found.")));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -14,6 +16,9 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod();
     });
 });
+builder.Services.AddScoped<SemesterService>();
+builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<AssignmentService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -29,4 +34,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapGet("/", () => @"CourseTrace management API. Navigate to /swagger to open the Swagger test UI.");
 app.Run();

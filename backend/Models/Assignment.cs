@@ -13,6 +13,7 @@ namespace Models
         */
         public int Weighting { get; set; }
         public DateTime DueDate { get; set; }
-        public required Course Course { get; set; }
+        public int CourseId { get; set; }
+        public Course? Course { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+// SUCCESSFUL, Should get all semesters, including courses
+GET http://localhost:5237/Semester
+###
+
+// SUCCESSFUL, Should get a specific semester, including courses
+GET http://localhost:5237/Semester/3
+###
+
+// SUCCESSFUL, Should create a semester according to this JSON data
+POST http://localhost:5237/Semester
+Content-Type: application/json
+
+{
+  "Name": "Semester 2 2024"
+}
+###
+
+// Should update a semester according to this JSON data
+PUT http://localhost:5237/Semester/4
+###
+
+// SUCCESSFUL, Should delete a semester
+DELETE http://localhost:5237/Semester/4
+###

@@ -33,7 +33,39 @@ namespace backend.Migrations
 
                     b.HasIndex("SemestersId");
 
-                    b.ToTable("CourseSemester");
+                    b.ToTable("CourseSemester", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CoursesId = 1,
+                            SemestersId = 1
+                        },
+                        new
+                        {
+                            CoursesId = 2,
+                            SemestersId = 1
+                        },
+                        new
+                        {
+                            CoursesId = 1,
+                            SemestersId = 2
+                        },
+                        new
+                        {
+                            CoursesId = 3,
+                            SemestersId = 2
+                        },
+                        new
+                        {
+                            CoursesId = 4,
+                            SemestersId = 3
+                        },
+                        new
+                        {
+                            CoursesId = 5,
+                            SemestersId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.Assignment", b =>
@@ -67,7 +99,69 @@ namespace backend.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Assignments");
+                    b.ToTable("Assignments", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourseId = 1,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 1",
+                            Score = 0,
+                            Weighting = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourseId = 1,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 2",
+                            Score = 0,
+                            Weighting = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseId = 2,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 3",
+                            Score = 0,
+                            Weighting = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourseId = 3,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 4",
+                            Score = 0,
+                            Weighting = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourseId = 4,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 5",
+                            Score = 0,
+                            Weighting = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourseId = 5,
+                            DueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MaxScore = 0,
+                            Name = "Assignment 6",
+                            Score = 0,
+                            Weighting = 0
+                        });
                 });
 
             modelBuilder.Entity("Models.Course", b =>
@@ -84,7 +178,39 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Course 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Course 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Course 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Course 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Course 5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Course 6"
+                        });
                 });
 
             modelBuilder.Entity("Models.Semester", b =>
@@ -104,7 +230,27 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Semesters");
+                    b.ToTable("Semesters", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Sem 1 2021",
+                            Year = 2021
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Sem 2 2021",
+                            Year = 2021
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Sem 1 2022",
+                            Year = 2022
+                        });
                 });
 
             modelBuilder.Entity("CourseSemester", b =>
