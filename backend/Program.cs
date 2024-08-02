@@ -16,12 +16,9 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod();
     });
 });
-
-// TODO: replace with <ISemesterService, SemesterService> when I'm done with it!!!!
 builder.Services.AddScoped<SemesterService>();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<AssignmentService>();
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

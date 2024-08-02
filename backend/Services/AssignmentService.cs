@@ -12,8 +12,11 @@ public class AssignmentService
         _context = context;
     }
 
-    public async Task CreateAssignment(CourseAssignmentDto assignment, int courseId)
+    public async Task<AssignmentDto> CreateAssignment(AssignmentPostDto assignment)
     {
+        var course = await _context.Courses.Include(c => c.Semesters).FirstOrDefaultAsync(c => c.Id == assignment.CourseId);
+
+        // Test if this works (linking)
         var createdAssignment = new Assignment
         {
             Name = assignment.Name,
@@ -21,10 +24,34 @@ public class AssignmentService
             MaxScore = assignment.MaxScore,
             Weighting = assignment.Weighting,
             DueDate = assignment.DueDate,
-            CourseId = courseId
+            CourseId = assignment.CourseId
         };
+
         _context.Assignments.Add(createdAssignment);
         await _context.SaveChangesAsync();
+
+        var assignmentDto = new AssignmentDto
+        {
+            Id = createdAssignment.Id,
+            Name = createdAssignment.Name,
+            Score = createdAssignment.Score,
+            MaxScore = createdAssignment.MaxScore,
+            Weighting = createdAssignment.Weighting,
+            DueDate = createdAssignment.DueDate,
+            CourseId = createdAssignment.CourseId,
+            Course = course != null ? new AssignmentCourseDto
+            {
+                Id = course.Id,
+                Name = course.Name,
+                Semesters = course.Semesters?.Select(s => new CourseSemesterDto
+                {
+                    Id = s.Id,
+                    Name = s.Name
+                }).ToList()
+            } : null
+        };
+
+        return assignmentDto;
     }
 
     public async Task DeleteAssignment(int id)
@@ -89,10 +116,22 @@ public class AssignmentService
         } : null;
     }
 
-    // TODO: Actually implement properly
-    public async Task UpdateAssignment(Assignment assignment)
+    public async Task UpdateAssignment(int id, AssignmentPostDto assignment)
     {
-        _context.Assignments.Update(assignment);
-        await _context.SaveChangesAsync();
+        var existingAssignment = await _context.Assignments.FindAsync(id);
+        if (existingAssignment != null)
+        {
+            existingAssignment.Name = assignment.Name;
+            existingAssignment.Score = assignment.Score;
+            existingAssignment.MaxScore = assignment.MaxScore;
+            existingAssignment.Weighting = assignment.Weighting;
+            existingAssignment.DueDate = assignment.DueDate;
+            existingAssignment.CourseId = assignment.CourseId;
+            await _context.SaveChangesAsync();
+        }
+        else
+        {
+            throw new ArgumentException("Assignment not found.");
+        }
     }
 }

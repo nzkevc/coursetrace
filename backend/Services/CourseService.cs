@@ -22,6 +22,9 @@ public class CourseService
             Semesters = semesters
         };
 
+        _context.Courses.Add(createdCourse);
+        await _context.SaveChangesAsync();
+
         var courseDto = new CourseDto
         {
             Id = createdCourse.Id,
@@ -35,8 +38,6 @@ public class CourseService
             Assignments = new List<CourseAssignmentDto>()
         };
 
-        _context.Courses.Add(createdCourse);
-        await _context.SaveChangesAsync();
         return courseDto;
     }
 

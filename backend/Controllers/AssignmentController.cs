@@ -35,25 +35,24 @@ public class AssignmentController : ControllerBase
     }
 
     [HttpPost(Name = "CreateAssignment")]
-    public async Task<ActionResult<Assignment>> Create(CourseAssignmentDto assignment, int courseId)
+    public async Task<ActionResult<AssignmentDto>> Create(AssignmentPostDto assignment)
     {
-        await _assignmentService.CreateAssignment(assignment, courseId);
-        return CreatedAtRoute("GetAssignmentById", new { id = assignment.Id }, assignment);
+        var createdAssignment = await _assignmentService.CreateAssignment(assignment);
+        return CreatedAtRoute("GetAssignmentById", new { id = createdAssignment.Id }, createdAssignment);
     }
 
     [HttpPut("{id}", Name = "UpdateAssignment")]
-    public async Task<IActionResult> Update(int id, Assignment assignment)
+    public async Task<IActionResult> Update(int id, AssignmentPostDto assignment)
     {
-        // var existingAssignment = await _assignmentService.GetAssignmentById(id);
-        // if (existingAssignment == null)
-        // {
-        //     return NotFound();
-        // }
-        // existingAssignment.Name = assignment.Name;
-        // existingAssignment.StartDate = assignment.StartDate;
-        // existingAssignment.EndDate = assignment.EndDate;
-        // await _assignmentService.UpdateAssignment(existingAssignment);
-        // return NoContent();
+        try
+        {
+            await _assignmentService.UpdateAssignment(id, assignment);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error updating assignment");
+            return BadRequest();
+        }
         return Ok();
     }
 

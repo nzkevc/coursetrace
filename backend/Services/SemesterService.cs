@@ -92,16 +92,16 @@ public class SemesterService
         return null;
     }
 
-    // TODO: actually implement properly
-    public async Task UpdateSemester(int id, Semester semester)
+    // Allows updating of related courses according to CourseIds in SemesterPostDto
+    public async Task UpdateSemester(int id, SemesterPostDto semester)
     {
         var existingSemester = await _context.Semesters.FindAsync(id);
 
-        // TODO: modify this to handle nulls? And if other fields can be changed
         if (existingSemester != null)
         {
             existingSemester.Name = semester.Name;
             existingSemester.Year = semester.Year;
+            existingSemester.Courses = await _context.Courses.Where(c => semester.CourseIds.Contains(c.Id)).ToListAsync();
             await _context.SaveChangesAsync();
         }
         else

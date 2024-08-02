@@ -8,7 +8,6 @@ namespace Controllers;
 [Route("[controller]")]
 public class SemesterController : ControllerBase
 {
-    // TODO: change this to ISemesterService when I'm done!!!
     private readonly SemesterService _semesterService;
     private readonly ILogger<SemesterController> _logger;
 
@@ -18,7 +17,6 @@ public class SemesterController : ControllerBase
         _logger = logger;
     }
 
-    // GET /Semester
     [HttpGet(Name = "GetAllSemesters")]
     public async Task<ActionResult<IEnumerable<SemesterDto>>> Get()
     {
@@ -26,7 +24,6 @@ public class SemesterController : ControllerBase
         return Ok(semesters);
     }
 
-    // GET /Semester/{id}
     [HttpGet("{id}", Name = "GetSemesterById")]
     public async Task<ActionResult<SemesterDto>> GetById(int id)
     {
@@ -38,7 +35,6 @@ public class SemesterController : ControllerBase
         return Ok(semester);
     }
 
-    // POST /Semester
     [HttpPost(Name = "CreateSemester")]
     public async Task<ActionResult<Semester>> Create([FromBody] SemesterPostDto semester)
     {
@@ -46,21 +42,19 @@ public class SemesterController : ControllerBase
         return CreatedAtRoute("GetSemesterById", new { id = createdSemester.Id }, createdSemester);
     }
 
-    // PUT /Semester/{id}
-    // TODO: properly implement this post method
     [HttpPut("{id}", Name = "UpdateSemester")]
-    public async Task<IActionResult> Update(int id, Semester semester)
+    public async Task<IActionResult> Update(int id, SemesterPostDto semester)
     {
-        // var existingSemester = await _semesterService.GetSemesterById(id);
-        // if (existingSemester == null)
-        // {
-        //     return NotFound();
-        // }
-        // existingSemester.Name = semester.Name;
-        // existingSemester.StartDate = semester.StartDate;
-        // existingSemester.EndDate = semester.EndDate;
-        // _semesterService.Update(existingSemester);
-        return NoContent();
+        try
+        {
+            await _semesterService.UpdateSemester(id, semester);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error updating semester");
+            return BadRequest();
+        }
+        return Ok();
     }
 
     // DELETE /Semester/{id}
