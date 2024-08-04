@@ -21,53 +21,37 @@ const AddSemesterForm: React.FC<AddSemesterFormProps> = ({
   onAddSemester,
 }) => {
   const [Name, setName] = useState("");
-  const [Year, setYear] = useState("");
-  const [CourseIds, setCourseIds] = useState([]);
+  const [Year, setYear] = useState(0);
+  const [CourseIds, setCourseIds] = useState<number[]>([]);
 
   const handleSubmit = async () => {
     await onAddSemester({ Name, Year, CourseIds });
     setName("");
-    setYear("");
+    setYear(0);
     setCourseIds([]);
     onClose();
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Add Student</DialogTitle>
+      <DialogTitle>Add Semester</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
-          label="First Name"
+          label="Name"
           type="text"
           fullWidth
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={Name}
+          onChange={(e) => setName(e.target.value)}
         />
         <TextField
           margin="dense"
-          label="Last Name"
-          type="text"
+          label="Year"
+          type="number"
           fullWidth
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <TextField
-          margin="dense"
-          label="Email"
-          type="email"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          margin="dense"
-          label="University"
-          type="text"
-          fullWidth
-          value={university}
-          onChange={(e) => setUniversity(e.target.value)}
+          value={Year}
+          onChange={(e) => setYear(Number(e.target.value))}
         />
       </DialogContent>
       <DialogActions>

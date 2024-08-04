@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { AssignmentDto } from "../types/Assignments";
 import { getAssignments } from "../services/assignmentService";
+import { ContainerButton } from "../components/ContainerButton";
 
 export default function Assignments() {
   const [assignments, setAssignments] = useState<AssignmentDto[]>([]);
@@ -29,6 +30,7 @@ export default function Assignments() {
   return (
     <Container>
       <h1>Assignments</h1>
+      <ContainerButton label="Add Assignment" action={setIsFormOpen} />
     </Container>
   );
 }

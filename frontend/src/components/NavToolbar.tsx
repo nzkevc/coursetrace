@@ -50,7 +50,7 @@ function NavToolbar() {
                 fontWeight: 700,
                 fontFamily: "Roboto",
                 letterSpacing: ".1rem",
-                color: "inherit",
+                color: "white",
                 textDecoration: "none",
               }}
             >

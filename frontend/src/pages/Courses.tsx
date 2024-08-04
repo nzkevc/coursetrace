@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { CourseDto } from "../types/Courses";
 import { getCourses } from "../services/courseService";
+import { ContainerButton } from "../components/ContainerButton";
 
 export default function Courses() {
   const [courses, setCourses] = useState<CourseDto[]>([]);
@@ -29,6 +30,7 @@ export default function Courses() {
   return (
     <Container>
       <h1>Courses</h1>
+      <ContainerButton label="Add Course" action={setIsFormOpen} />
     </Container>
   );
 }
