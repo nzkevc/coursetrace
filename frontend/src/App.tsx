@@ -50,12 +50,10 @@ function App() {
         {
           path: "assignments",
           element: <Assignments />,
-          children: [
-            {
-              path: ":id",
-              element: <SingleAssignment />,
-            },
-          ],
+        },
+        {
+          path: "assignments/:id",
+          element: <SingleAssignment />,
         },
       ],
     },
