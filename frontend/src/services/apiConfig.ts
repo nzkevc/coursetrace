@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:5237/";
+const apiUrl = "http://localhost:5237";
 
 const config = {
   semesterApiUrl: `${apiUrl}/Semester`,

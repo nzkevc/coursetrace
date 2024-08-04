@@ -7,7 +7,7 @@ import Assignments from "./pages/Assignments";
 import SingleAssignment from "./pages/SingleAssignment";
 import ErrorPage from "./pages/ErrorPage";
 import { Layout } from "./components/Layout";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useSettings } from "./services/useSettings";
 
 function App() {
@@ -62,6 +62,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
       </ThemeProvider>
     </>

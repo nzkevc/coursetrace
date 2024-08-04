@@ -12,7 +12,7 @@ export const SettingsContext = createContext<SettingsContextProps | undefined>(
 export const SettingsProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isDarkTheme, setDarkTheme] = useState(false);
+  const [isDarkTheme, setDarkTheme] = useState(true);
 
   const toggleDarkTheme = () => {
     setDarkTheme(!isDarkTheme);

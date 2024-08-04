@@ -10,7 +10,7 @@ export interface SemesterDto {
 export interface SemesterPostDto {
   Name: string;
   Year: number;
-  CourseIds: number[];
+  CourseIds?: number[];
 }
 
 export interface CourseSemesterDto {

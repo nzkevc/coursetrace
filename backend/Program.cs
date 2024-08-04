@@ -9,12 +9,13 @@ builder.Services.AddDbContext<CoursesContext>(options =>
     ?? throw new InvalidOperationException("Connection string 'MyDbConnection' not found.")));
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
 builder.Services.AddScoped<SemesterService>();
 builder.Services.AddScoped<CourseService>();
@@ -26,6 +27,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors("AllowReactApp");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

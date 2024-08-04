@@ -101,7 +101,7 @@ public class SemesterService
         {
             existingSemester.Name = semester.Name;
             existingSemester.Year = semester.Year;
-            existingSemester.Courses = await _context.Courses.Where(c => semester.CourseIds.Contains(c.Id)).ToListAsync();
+            existingSemester.Courses = await _context.Courses.Where(c => semester.CourseIds == null ? false : semester.CourseIds.Contains(c.Id)).ToListAsync();
             await _context.SaveChangesAsync();
         }
         else
