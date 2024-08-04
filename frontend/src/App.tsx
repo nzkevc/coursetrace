@@ -17,7 +17,7 @@ function App() {
     palette: {
       mode: isDarkTheme ? "dark" : "light",
       primary: {
-        main: "#2c3e50",
+        main: "#2C3E50",
       },
       secondary: {
         main: "#E74C3C",
