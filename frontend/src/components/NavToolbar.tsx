@@ -14,7 +14,7 @@ import { Settings } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const pages = ["Semesters", "Courses", "Assignments"];
-const settings = ["Account", "Settings"];
+// const settings: [] | null = null; // account, settings
 
 function NavToolbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -35,15 +35,16 @@ function NavToolbar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   return (
     <>
       <AppBar position="static" color="primary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+            {/* DESKTOP LOGO */}
             <Typography
               variant="h6"
               noWrap
@@ -61,7 +62,7 @@ function NavToolbar() {
             >
               COURSETRACE™
             </Typography>
-
+            {/* MOBILE TOPBAR */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -89,7 +90,12 @@ function NavToolbar() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    component={Link}
+                    to={`/${page.toLowerCase()}`}
+                  >
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
@@ -113,20 +119,23 @@ function NavToolbar() {
             >
               COURSETRACE™
             </Typography>
+            {/* DESKTOP NAVIGATION */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={`/${page.toLowerCase()}`}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page}
                 </Button>
               ))}
             </Box>
-
+            {/* SETTINGS BUTTON */}
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title="Still currently in development!">
                 <IconButton
                   onClick={handleOpenUserMenu}
                   sx={{ p: 0, color: "white" }}
@@ -147,14 +156,14 @@ function NavToolbar() {
                   vertical: "top",
                   horizontal: "right",
                 }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
+                open={false} // Boolean(anchorElUser)
+                // onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
+                {/* {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
               </Menu>
             </Box>
           </Toolbar>

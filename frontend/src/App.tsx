@@ -7,8 +7,24 @@ import Assignments from "./pages/Assignments";
 import SingleAssignment from "./pages/SingleAssignment";
 import ErrorPage from "./pages/ErrorPage";
 import { Layout } from "./components/Layout";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { useSettings } from "./services/useSettings";
 
 function App() {
+  const { isDarkTheme } = useSettings();
+
+  const theme = createTheme({
+    palette: {
+      mode: isDarkTheme ? "dark" : "light",
+      primary: {
+        main: "#2c3e50",
+      },
+      secondary: {
+        main: "#E74C3C",
+      },
+    },
+  });
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -47,7 +63,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+      </ThemeProvider>
     </>
   );
 }
