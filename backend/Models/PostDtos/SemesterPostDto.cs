@@ -5,6 +5,6 @@ namespace Models
     {
         public required string Name { get; set; }
         public required int Year { get; set; }
-        public required List<int> CourseIds { get; set; }
+        public List<int>? CourseIds { get; set; }
     }
 }
